@@ -6,6 +6,7 @@ var assets = require('metalsmith-assets');
 var layouts = require('metalsmith-layouts');
 var multiLanguage = require('metalsmith-multi-language');
 var permalinks = require('metalsmith-permalinks');
+var i18n = require('metalsmith-i18n');
 
 const DEFAULT_LOCALE = 'en';
 const LOCALES = ['en', 'es'];
@@ -16,6 +17,11 @@ metalsmith(__dirname)
     .use(multiLanguage({
 	default: DEFAULT_LOCALE,
 	locales: LOCALES
+    }))
+    .use(i18n({
+	default: DEFAULT_LOCALE,
+	locales: LOCALES,
+	directory: 'locales'
     }))
     .use(markdown())
     .use(permalinks({
